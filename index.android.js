@@ -1,24 +1,19 @@
-import React, {
-  Component,
-  View,
-  requireNativeComponent,
-  NativeAppEventEmitter,
-} from 'react-native';
+import { NativeModules } from 'react-native';
 
-import {
+/*import {
   LIBRARY_VERSION,
   SUPPORTED_LANGUAGES,
   DETECTION_MODES,
   CAN_READ_CARD_WITH_CAMERA,
-} from './constants';
+} from './constants';*/
 
-const BBBCardIO = requireNativeComponent('BBBCardIO', null);
-const languageOrLocale = React.PropTypes.oneOf(SUPPORTED_LANGUAGES);
-const detectionMode = React.PropTypes.oneOf(DETECTION_MODES);
+const BBBCardIO = NativeModules.BBBCardIO;
+//const languageOrLocale = React.PropTypes.oneOf(SUPPORTED_LANGUAGES);
+//const detectionMode = React.PropTypes.oneOf(DETECTION_MODES);
 
-export default class CardIO extends Component {
+export default {//extends Component {
 
-  propTypes: {
+  /*propTypes: {
     languageOrLocale: languageOrLocale,
     detectionMode: detectionMode,
     guideColor: React.PropTypes.string,
@@ -69,10 +64,11 @@ export default class CardIO extends Component {
   }
 
   render() {
-    return (
-      <BBBCardIO
-        { ...this.props }
-      />
-    );
+    BBCardIO.showScanner();
+    return null;
+  }*/
+
+  showScanner() {
+     return NativeModules.BBBCardIO.showScanner(false, false, false, true);
   }
 };
